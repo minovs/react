@@ -1,6 +1,6 @@
 const express = require("express")
-/*
 const bodyParser = require("body-parser");
+/*
 const path = require("path");
 const staticAsset = require("static-asset");
 const session = require("express-session");
@@ -11,6 +11,9 @@ const config = require("./config");
 */
 const routes = require("./api");
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/api", routes);
 /*
 const sessionStore = new MySQLStore(config.OPTION_DB);
@@ -26,8 +29,8 @@ app.use(
 );
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
+
 app.use(cookieParser());
 app.use(staticAsset(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
